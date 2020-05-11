@@ -1,0 +1,32 @@
+openapi: 3.0.1
+info:
+  title: Test API
+  version: v1
+paths:
+  /test:
+    post:
+      tags:
+        - User
+      operationId: createUser
+      requestBody:
+        description: The data for the account creation.
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/UserInfo'
+
+      responses:
+        '201':
+          description: The account was created.
+components:
+  schemas:
+    UserInfo:
+      required:
+        - eMailAddress
+      type: object
+      properties:
+        eMailAddress:
+          maxLength: 256
+          type: string
+          description: The email address of the user.
+      description: request object
