@@ -1,6 +1,7 @@
 package com.github.mkay.demo
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.github.mkay.demo.model.UserInfo
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -13,6 +14,10 @@ class JacksonTests {
     @Autowired
     private lateinit var objectMapper: ObjectMapper
 
+    @Test
+    fun `kotlin module is registered`(){
+        assertThat(objectMapper.registeredModuleIds).contains(KotlinModule::class.java.name)
+    }
 
     @Test
     fun `serialize object with property eMailAddress`() {
